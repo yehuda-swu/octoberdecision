@@ -1,0 +1,1177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The October Decision | Explore</title>
+<style>
+:root {
+  --bg: #07111e;
+  --panel: #101f32;
+  --panel2: #172b41;
+  --line: #34475b;
+  --text: #f0f3f7;
+  --muted: #adc0d1;
+  --blue: #43a9dd;
+  --gold: #e2bb78;
+  --red: #e07a72;
+  --green: #72c2ac;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+}
+button, input { font: inherit; }
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 8px;
+  padding: 13px 20px;
+  min-height: 46px;
+  font-weight: 700;
+}
+button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+button.primary { background: var(--blue); color: #07111e; }
+button.secondary {
+  background: var(--panel2);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+button:hover { filter: brightness(1.12); }
+a { color: #9bd9f7; }
+.wrap { max-width: 1190px; margin: auto; padding: 22px; }
+header {
+  border-bottom: 1px solid var(--line);
+  background: #0b1929;
+}
+.headerrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.identity { display: flex; align-items: center; gap: 15px; }
+.identity img {
+  width: 51px;
+  height: 51px;
+  object-fit: contain;
+}
+.wordmark { font-size: 13px; font-weight: 800; letter-spacing: 2px; }
+.kicker {
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 2.2px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.muted { color: var(--muted); }
+.hero {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 26px;
+  margin: 42px 0 22px;
+  align-items: center;
+}
+h1, h2, h3 { line-height: 1.12; }
+h1 {
+  font-size: clamp(43px, 7vw, 88px);
+  text-transform: uppercase;
+  letter-spacing: -3px;
+  margin: 15px 0 18px;
+}
+h2 { font-size: clamp(26px, 4vw, 42px); margin: 8px 0 20px; }
+h3 { margin: 0 0 10px; }
+.accent { color: var(--blue); }
+.lede { max-width: 600px; font-size: 19px; color: #d9e4ed; }
+.illustration {
+  background: linear-gradient(155deg, #20344b, #0c1828);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 28px;
+  min-height: 280px;
+}
+.illustration .code {
+  font-family: Consolas, monospace;
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: var(--gold);
+}
+.illustration .clock {
+  font-family: Consolas, monospace;
+  font-size: clamp(38px, 6vw, 70px);
+  color: var(--red);
+  margin: 25px 0;
+}
+.classified {
+  display: inline-block;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  padding: 6px 12px;
+  font: 800 13px Consolas, monospace;
+  letter-spacing: 3px;
+  transform: rotate(-4deg);
+}
+.modegrid, .reportgrid, .metricgrid, .gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.modecard, .card {
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.modecard p { min-height: 65px; color: var(--muted); }
+.modecard button { width: 100%; }
+.small {
+  font-size: 13px;
+  color: var(--muted);
+}
+.notice {
+  padding: 15px 18px;
+  border-left: 3px solid var(--gold);
+  background: #1d2a38;
+  margin-top: 18px;
+}
+.gamegrid {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 20px;
+  margin-top: 22px;
+}
+.sidebar, .maincard {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 21px;
+}
+.sidebar { align-self: start; }
+.metric { margin: 22px 0; }
+.metrichead {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+.track {
+  height: 9px;
+  border-radius: 6px;
+  background: #2a3c50;
+  overflow: hidden;
+}
+.fill { height: 100%; background: var(--blue); transition: width .2s; }
+.fill.gold { background: var(--gold); }
+.fill.red { background: var(--red); }
+.divider {
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.stagehead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+}
+.date {
+  font-family: Consolas, monospace;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.report {
+  background: #e3dfd2;
+  color: #242c32;
+  padding: 18px;
+  border-radius: 5px;
+  margin-top: 14px;
+}
+.report .stamp {
+  font-size: 11px;
+  color: #6a5d4a;
+  font-family: Consolas, monospace;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 9px;
+}
+.report p { margin: 0; }
+.question { margin-top: 27px; }
+.options { display: grid; gap: 10px; }
+.option {
+  display: block;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 15px;
+  cursor: pointer;
+}
+.option:has(input:checked) {
+  border-color: var(--blue);
+  background: #193d58;
+}
+.option input { margin-right: 9px; accent-color: var(--blue); }
+.option strong { font-size: 16px; }
+.option .desc {
+  display: block;
+  padding-left: 27px;
+  margin-top: 6px;
+  color: #bdcddd;
+  font-size: 13px;
+}
+.riskbox {
+  background: #0d1b2d;
+  border: 1px solid var(--line);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.riskbox input[type=range] {
+  display: block;
+  width: 100%;
+  margin: 19px 0;
+  accent-color: var(--blue);
+}
+.scale {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 12px;
+}
+.votegrid { display: grid; gap: 9px; margin: 16px 0; }
+.voterow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px;
+  align-items: center;
+  gap: 14px;
+}
+.voterow input {
+  background: #f6f8fa;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  color: #172333;
+  width: 100%;
+}
+.votebar {
+  height: 9px;
+  background: #2a4053;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 5px 0 11px;
+}
+.votebar span {
+  height: 100%;
+  display: block;
+  background: var(--blue);
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+.actions > button { flex: 1; }
+.error { color: #ffb5ad; margin-top: 12px; min-height: 20px; }
+.callout {
+  background: #162e40;
+  border-left: 3px solid var(--blue);
+  padding: 18px;
+  margin: 20px 0;
+}
+.war {
+  background: #421d23;
+  border: 1px solid #994951;
+  border-radius: 12px;
+  padding: 36px 22px;
+  text-align: center;
+  margin: 24px 0;
+}
+.war .time {
+  font: 800 clamp(55px, 10vw, 110px) Consolas, monospace;
+}
+.war .attack {
+  font-size: clamp(28px, 5vw, 53px);
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+.resultmetric {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--panel2);
+}
+.resultmetric .value { font-size: 31px; font-weight: 800; }
+.timeline { display: grid; gap: 11px; }
+.timelineitem {
+  padding: 14px;
+  border-left: 3px solid var(--blue);
+  background: var(--panel2);
+}
+.gallery figure { margin: 0; }
+.gallery img {
+  width: 100%;
+  max-height: 290px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+.gallery figcaption { color: var(--muted); font-size: 12px; padding: 5px 0 14px; }
+.mapimg { max-width: 100%; max-height: 440px; object-fit: contain; }
+footer {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 45px;
+  padding: 20px 0;
+}
+footer img { width: 100px; vertical-align: middle; }
+@media(max-width: 760px) {
+  .hero, .gamegrid, .modegrid, .reportgrid, .metricgrid, .gallery {
+    grid-template-columns: 1fr;
+  }
+  .wrap { padding: 15px; }
+  .hero { margin-top: 24px; }
+  .sidebar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .sidebar .metric { margin: 8px 0; }
+  .sidebar .divider, .sidebar .fronts { display: none; }
+  .illustration { min-height: 200px; }
+  .modecard p { min-height: 0; }
+}
+@media print {
+  header, footer, button, .sidebar { display: none !important; }
+  body { background: white; color: black; }
+  .gamegrid { display: block; }
+  .card, .maincard, .resultmetric, .timelineitem {
+    color: black;
+    background: white;
+    border: 1px solid #bbb;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap headerrow">
+    <div class="identity">
+      <img src="explore logo 06 v2.png"
+           alt="Explore"
+           onerror="this.style.display='none'">
+      <div>
+        <div class="wordmark">EXPLORE</div>
+        <div class="small">Historical decision simulator</div>
+      </div>
+    </div>
+    <span class="kicker">Israel | October 1973</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section id="welcome">
+  <div class="hero">
+    <div>
+      <div class="kicker">StandWithUs UK presents</div>
+      <h1>THE <span class="accent">OCTOBER</span> DECISION</h1>
+      <p class="lede">
+        You have intelligence. You have limited time.
+        You do not know what happens next.
+      </p>
+      <p class="lede"><strong>Make the call.</strong></p>
+      <p class="small">Six briefings | Approximately 7 minutes</p>
+    </div>
+    <div class="illustration">
+      <div class="code">INTELLIGENCE DESK / 1973</div>
+      <div class="clock">06.10.73</div>
+      <div class="classified">CLASSIFIED</div>
+      <p class="small">
+        The decisions are yours. The historical outcome is not.
+      </p>
+    </div>
+  </div>
+
+  <div class="modegrid">
+    <div class="modecard">
+      <div class="kicker">Mode 01</div>
+      <h2>Single Player</h2>
+      <p>
+        Make six independent decisions. Assess the danger,
+        weigh the consequences and receive an individual report.
+      </p>
+      <button class="primary" type="button" data-start="single">
+        Start Single Player
+      </button>
+    </div>
+    <div class="modecard">
+      <div class="kicker">Mode 02</div>
+      <h2>Classroom</h2>
+      <p>
+        Reveal intelligence on the projector, record group votes
+        and decide what action the class recommends.
+      </p>
+      <button class="primary" type="button" data-start="class">
+        Start Classroom
+      </button>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Before you begin:</strong>
+    Briefings are educational reconstructions based on historical
+    warning indicators. They are not verbatim intelligence documents.
+    Resource indicators are fictional teaching measures, not historical
+    statistics. This simulation does not predict casualties or alternate
+    military outcomes.
+  </div>
+</section>
+
+<section id="play" hidden>
+  <div class="headerrow">
+    <div>
+      <div class="kicker" id="modeLabel"></div>
+      <h2 style="margin:4px 0">Situation Room</h2>
+    </div>
+    <button class="secondary" id="restartPlay" type="button">
+      Restart Simulation
+    </button>
+  </div>
+
+  <div class="gamegrid">
+    <aside class="sidebar">
+      <div>
+        <div class="kicker">Readiness</div>
+        <div class="metric">
+          <div class="metrichead"><span>Military</span><strong id="readVal">16</strong></div>
+          <div class="track"><div id="readBar" class="fill"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="kicker">Resources</div>
+        <div class="metric">
+          <div class="metrichead"><span>Economic cost</span><strong id="costVal">0</strong></div>
+          <div class="track"><div id="costBar" class="fill gold"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="kicker">Diplomacy</div>
+        <div class="metric">
+          <div class="metrichead"><span>Escalation risk</span><strong id="riskVal">0</strong></div>
+          <div class="track"><div id="riskBar" class="fill red"></div></div>
+        </div>
+      </div>
+      <div class="fronts" style="grid-column:1/-1">
+        <div class="divider"></div>
+        <div class="kicker">Current intelligence picture</div>
+        <p class="small">Egyptian front | Sinai</p>
+        <div class="track"><div id="egyptBar" class="fill"></div></div>
+        <p class="small">Syrian front | Golan</p>
+        <div class="track"><div id="syriaBar" class="fill gold"></div></div>
+        <p class="small">
+          Signal levels are illustrative, not historical percentages.
+        </p>
+      </div>
+    </aside>
+
+    <main class="maincard">
+      <div id="stage" aria-live="polite"></div>
+    </main>
+  </div>
+</section>
+
+<section id="ending" hidden>
+  <div class="headerrow">
+    <div>
+      <div class="kicker">Historical reveal</div>
+      <h2>The Decision Is Made</h2>
+    </div>
+    <button class="secondary" id="restartEnd" type="button">Play Again</button>
+  </div>
+
+  <div class="war">
+    <div class="kicker">6 October 1973</div>
+    <div class="time">14:00</div>
+    <div class="attack">WAR BEGINS</div>
+    <p>Egyptian and Syrian forces launch a coordinated attack.</p>
+  </div>
+
+  <div id="results"></div>
+</section>
+
+<footer>
+  <p>
+    THE OCTOBER DECISION | An Explore educational simulation.
+    Designed for discussion, not as a prediction of alternative history.
+  </p>
+  <img src="SWU LOGO 2023 v2.svg"
+       alt="StandWithUs UK"
+       onerror="this.style.display='none'">
+</footer>
+
+</div>
+
+<script>
+"use strict";
+
+const rounds = [
+  {
+    date: "LATE SEPTEMBER 1973",
+    title: "Another military exercise?",
+    assessment: "Major war considered unlikely",
+    egypt: 35, syria: 15,
+    intro: "Egyptian military activity near the Suez Canal is increasing. Israel has seen exercises here before. Mobilising reserves would remove thousands of people from civilian life.",
+    reports: [
+      ["MILITARY OBSERVATION", "Egyptian formations are active close to the canal. Some movements resemble preparations for an exercise."],
+      ["ANALYST COMMENT", "Previous Egyptian exercises have ended without a new war. Military activity alone does not establish intent."]
+    ],
+    question: "How much should Israel do before it has stronger evidence?"
+  },
+  {
+    date: "1 OCTOBER 1973",
+    title: "A second front",
+    assessment: "War still judged unlikely",
+    egypt: 45, syria: 43,
+    intro: "Syrian deployments near the Golan Heights are attracting attention. Israel now has to consider whether activity on two fronts is connected.",
+    reports: [
+      ["NORTHERN COMMAND", "Additional Syrian forces are deployed near the ceasefire line on the Golan Heights."],
+      ["INTELLIGENCE NOTE", "A defensive explanation remains possible. Analysts disagree about how to interpret the wider pattern."]
+    ],
+    question: "Do the two fronts change your response?"
+  },
+  {
+    date: "3 OCTOBER 1973",
+    title: "The assumptions",
+    assessment: "Prevailing assessment remains cautious",
+    egypt: 56, syria: 56,
+    intro: "Israeli intelligence has an established view about the conditions Egypt would need before starting a major war. New reports must be assessed against that assumption.",
+    reports: [
+      ["STRATEGIC ASSESSMENT", "Egypt is believed unlikely to launch a major war without certain military capabilities."],
+      ["OPERATIONS REPORT", "Egyptian and Syrian forces remain positioned for possible military action. Their intentions are uncertain."]
+    ],
+    question: "Should a longstanding assessment outweigh new warning signs?"
+  },
+  {
+    date: "4 OCTOBER 1973",
+    title: "Signals intensify",
+    assessment: "War assessed as a low probability",
+    egypt: 70, syria: 70,
+    intro: "Reports of heightened military alert on both fronts continue. The distinction between military exercises, defensive precautions and preparations for attack is becoming harder to judge.",
+    reports: [
+      ["EGYPTIAN FRONT", "Egyptian forces remain at heightened readiness near the canal."],
+      ["SYRIAN FRONT", "Syrian emergency deployments continue. Units are positioned close to the ceasefire line."]
+    ],
+    question: "What level of precaution is now justified?"
+  },
+  {
+    date: "5 OCTOBER 1973",
+    title: "The Soviet evacuation",
+    assessment: "Immediate war still judged unlikely",
+    egypt: 85, syria: 82,
+    intro: "There are reports that Soviet dependants and some personnel are leaving Egypt and Syria. This may indicate that Moscow expects a serious confrontation. Other explanations remain possible.",
+    reports: [
+      ["DIPLOMATIC SIGNAL", "Soviet evacuation activity has been detected in both countries."],
+      ["ANALYTICAL CONFLICT", "Military preparedness and evacuation activity raise concern, but an attack has still not been established as certain."]
+    ],
+    question: "Is this enough to justify extensive mobilisation?"
+  },
+  {
+    date: "6 OCTOBER 1973 | EARLY MORNING",
+    title: "The final warning",
+    assessment: "Credible warning of an attack today",
+    egypt: 98, syria: 98,
+    intro: "A highly credible warning now indicates that Egypt and Syria intend to attack later today. The leadership must act with very little time remaining.",
+    reports: [
+      ["URGENT INTELLIGENCE", "A coordinated Egyptian and Syrian attack is expected today."],
+      ["POLITICAL CONSIDERATION", "Mobilisation is underway, but the question of how far to go remains. Striking first could create grave diplomatic consequences."]
+    ],
+    question: "What is your final recommendation?"
+  }
+];
+
+const actions = {
+  monitor: {
+    name: "Continue monitoring",
+    desc: "Avoid premature action and preserve civilian resources.",
+    ready: 0, cost: 0, risk: 0,
+    consequence: "Costs stay low, but Israel gains little additional readiness."
+  },
+  verify: {
+    name: "Intensify intelligence gathering",
+    desc: "Seek stronger confirmation while taking limited precautions.",
+    ready: 5, cost: 4, risk: 0,
+    consequence: "Greater scrutiny offers a modest readiness benefit at limited cost."
+  },
+  limited: {
+    name: "Mobilise selected reserves",
+    desc: "Prepare priority units while limiting disruption.",
+    ready: 16, cost: 13, risk: 3,
+    consequence: "Readiness improves, but reserve mobilisation affects the economy and civilian life."
+  },
+  full: {
+    name: "Begin extensive mobilisation",
+    desc: "Increase military preparedness substantially.",
+    ready: 27, cost: 25, risk: 9,
+    consequence: "Readiness rises sharply, accompanied by serious economic and political costs."
+  },
+  strike: {
+    name: "Recommend striking first",
+    desc: "Consider offensive military action before the expected attack.",
+    ready: 22, cost: 22, risk: 42,
+    consequence: "This hypothetical option introduces exceptional diplomatic and escalation risks. It was not the path Israel chose."
+  }
+};
+
+let state = null;
+
+function clamp(n) {
+  return Math.min(100, Math.max(0, n));
+}
+
+function availableActions() {
+  return state.step === 5
+    ? ["monitor", "limited", "full", "strike"]
+    : ["monitor", "verify", "limited", "full"];
+}
+
+function begin(mode) {
+  state = {
+    mode,
+    step: 0,
+    readiness: 16,
+    cost: 0,
+    escalation: 0,
+    records: []
+  };
+
+  document.getElementById("welcome").hidden = true;
+  document.getElementById("ending").hidden = true;
+  document.getElementById("play").hidden = false;
+  document.getElementById("modeLabel").textContent =
+    mode === "class" ? "CLASSROOM MODE" : "SINGLE PLAYER MODE";
+  renderRound();
+  window.scrollTo(0, 0);
+}
+
+function updateBoard() {
+  document.getElementById("readVal").textContent = state.readiness;
+  document.getElementById("costVal").textContent = state.cost;
+  document.getElementById("riskVal").textContent = state.escalation;
+
+  document.getElementById("readBar").style.width = state.readiness + "%";
+  document.getElementById("costBar").style.width = state.cost + "%";
+  document.getElementById("riskBar").style.width = state.escalation + "%";
+
+  const r = rounds[Math.min(state.step, 5)];
+  document.getElementById("egyptBar").style.width = r.egypt + "%";
+  document.getElementById("syriaBar").style.width = r.syria + "%";
+}
+
+function renderRound() {
+  updateBoard();
+
+  const r = rounds[state.step];
+  const a = availableActions();
+  const defaultRisk = state.records.length
+    ? state.records[state.records.length - 1].probability
+    : 20;
+
+  const actionHTML = a.map(id => {
+    const x = actions[id];
+    return `
+      <label class="option">
+        <input type="radio" name="response" value="${id}">
+        <strong>${x.name}</strong>
+        <span class="desc">${x.desc}</span>
+      </label>
+    `;
+  }).join("");
+
+  const reportHTML = r.reports.map(report => `
+    <div class="report">
+      <div class="stamp">INTELLIGENCE / ${report[0]}</div>
+      <p>${report[1]}</p>
+    </div>
+  `).join("");
+
+  const voteHTML = state.mode === "class" ? `
+    <div class="card" style="margin-top:20px">
+      <div class="kicker">Educator controls</div>
+      <h3>Record the class vote</h3>
+      <p class="small">
+        Enter the number of groups choosing each option.
+        These votes are entered manually. No student devices connect.
+      </p>
+      <div class="votegrid">
+        ${a.map(id => `
+          <label class="voterow">
+            <span>${actions[id].name}</span>
+            <input type="number" min="0" max="999" value="0"
+                   data-vote="${id}" aria-label="Votes for ${actions[id].name}">
+          </label>
+        `).join("")}
+      </div>
+      <button id="showVotes" class="secondary" type="button">
+        Reveal Class Vote
+      </button>
+      <div id="voteResult" aria-live="polite"></div>
+      <p class="small">
+        The educator still chooses which recommendation to adopt.
+      </p>
+    </div>
+  ` : "";
+
+  const challengeHTML = state.step >= 2 && state.step <= 4 ? `
+    <label style="display:block;margin-top:20px">
+      <input type="checkbox" id="challenge">
+      <strong>Challenge the prevailing intelligence assessment</strong>
+    </label>
+    <p class="small">
+      Record whether you would explicitly question the established assumptions.
+    </p>
+  ` : "";
+
+  document.getElementById("stage").innerHTML = `
+    <div class="stagehead">
+      <div>
+        <div class="kicker">Intelligence briefing ${state.step + 1} of 6</div>
+        <div class="date">${r.date}</div>
+      </div>
+      <div class="classified">SECRET</div>
+    </div>
+    <h2>${r.title}</h2>
+    <p>${r.intro}</p>
+    <div class="reportgrid">${reportHTML}</div>
+
+    <div class="callout">
+      <div class="kicker">Prevailing assessment</div>
+      <strong>${r.assessment}</strong>
+      <p class="small" style="margin-bottom:0">
+        Simplified historical context, not a verbatim intelligence rating.
+      </p>
+    </div>
+
+    <div class="question">
+      <h3>${r.question}</h3>
+      <div class="options">${actionHTML}</div>
+    </div>
+
+    ${challengeHTML}
+
+    <div class="riskbox">
+      <label for="likelihood">
+        <strong>Your estimated likelihood of war:</strong>
+        <strong id="likelihoodText">${defaultRisk}%</strong>
+      </label>
+      <input type="range" id="likelihood"
+             min="0" max="100" step="5" value="${defaultRisk}">
+      <div class="scale">
+        <span>0% | Very unlikely</span>
+        <span>100% | Almost certain</span>
+      </div>
+      <p class="small">
+        This is your judgement, not an objective historical probability.
+      </p>
+    </div>
+
+    ${voteHTML}
+
+    <div class="actions">
+      <button class="primary" type="button" id="commit">
+        Commit Decision
+      </button>
+    </div>
+    <div class="error" id="validation" role="alert"></div>
+  `;
+
+  document.getElementById("likelihood").addEventListener("input", e => {
+    document.getElementById("likelihoodText").textContent = e.target.value + "%";
+  });
+
+  document.getElementById("commit").addEventListener("click", commitDecision);
+
+  if (state.mode === "class") {
+    document.getElementById("showVotes").addEventListener("click", showVotes);
+  }
+}
+
+function readVotes() {
+  const votes = {};
+  document.querySelectorAll("[data-vote]").forEach(el => {
+    const parsed = Number(el.value);
+    votes[el.dataset.vote] = Number.isFinite(parsed)
+      ? Math.round(clampVote(parsed))
+      : 0;
+  });
+  return votes;
+}
+
+function clampVote(n) {
+  return Math.min(999, Math.max(0, n));
+}
+
+function showVotes() {
+  const votes = readVotes();
+  const total = Object.values(votes).reduce((a, b) => a + b, 0);
+  const target = document.getElementById("voteResult");
+
+  if (!total) {
+    target.innerHTML = '<p class="small">Enter group votes before revealing the result.</p>';
+    return;
+  }
+
+  target.innerHTML = `
+    <h3 style="margin-top:22px">Class vote | ${total} groups</h3>
+    ${Object.entries(votes).map(([id, n]) => {
+      const pct = 100 * n / total;
+      return `
+        <div class="metrichead">
+          <span>${actions[id].name}</span><strong>${n} votes</strong>
+        </div>
+        <div class="votebar"><span style="width:${pct}%"></span></div>
+      `;
+    }).join("")}
+  `;
+}
+
+function commitDecision() {
+  const checked = document.querySelector('input[name="response"]:checked');
+
+  if (!checked) {
+    document.getElementById("validation").textContent =
+      "Select a recommendation before continuing.";
+    return;
+  }
+
+  const id = checked.value;
+  const a = actions[id];
+  const r = rounds[state.step];
+  const probability = Number(document.getElementById("likelihood").value);
+  const challengeBox = document.getElementById("challenge");
+  const challenged = challengeBox ? challengeBox.checked : false;
+  const votes = state.mode === "class" ? readVotes() : null;
+
+  // Mobilisation made very late has less time to take effect.
+  let readinessGain = a.ready;
+  if (state.step >= 4 && ["limited", "full"].includes(id)) {
+    readinessGain = Math.round(readinessGain * 0.65);
+  }
+
+  state.readiness = clamp(
+    state.readiness + readinessGain -
+    (id === "monitor" && state.step >= 3 ? 2 : 0)
+  );
+  state.cost = clamp(state.cost + a.cost);
+  state.escalation = clamp(state.escalation + a.risk);
+
+  state.records.push({
+    date: r.date,
+    title: r.title,
+    action: id,
+    probability,
+    challenged,
+    votes
+  });
+
+  state.step += 1;
+  updateBoard();
+
+  document.getElementById("stage").innerHTML = `
+    <div class="kicker">Recommendation logged</div>
+    <h2>${a.name}</h2>
+    <p class="lede">${a.consequence}</p>
+    <div class="callout">
+      <strong>Tradeoffs are accumulating.</strong>
+      <p>
+        Military readiness: ${state.readiness}/100<br>
+        Economic cost: ${state.cost}/100<br>
+        Escalation risk: ${state.escalation}/100
+      </p>
+      <p class="small">
+        These are simplified game indicators rather than historical measurements.
+      </p>
+    </div>
+    <p>
+      You assessed the likelihood of war at <strong>${probability}%</strong>.
+    </p>
+    <div class="actions">
+      <button class="primary" id="continue" type="button">
+        ${state.step === rounds.length
+          ? "Reveal What Happened"
+          : "Open Next Intelligence Briefing"}
+      </button>
+    </div>
+  `;
+
+  document.getElementById("continue").addEventListener("click", () => {
+    if (state.step >= rounds.length) {
+      showEnding();
+    } else {
+      renderRound();
+    }
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function riskGraph() {
+  const values = state.records.map(r => r.probability);
+  const points = values.map((n, i) =>
+    `${25 + i * 53},${120 - n}`
+  ).join(" ");
+
+  return `
+    <svg viewBox="0 0 340 150" role="img"
+         aria-label="Chart showing your six estimates of the likelihood of war"
+         style="width:100%;max-width:530px">
+      <line x1="25" y1="20" x2="25" y2="120"
+            stroke="#718599" stroke-width="1"/>
+      <line x1="25" y1="120" x2="305" y2="120"
+            stroke="#718599" stroke-width="1"/>
+      <line x1="25" y1="70" x2="305" y2="70"
+            stroke="#43566a" stroke-dasharray="4 5"/>
+      <polyline points="${points}" fill="none"
+                stroke="#43a9dd" stroke-width="3"
+                stroke-linejoin="round" stroke-linecap="round"/>
+      ${values.map((n, i) => `
+        <circle cx="${25 + i * 53}" cy="${120 - n}" r="5"
+                fill="#e2bb78"/>
+        <text x="${25 + i * 53}" y="140" fill="#b9cad8"
+              text-anchor="middle" font-size="10">${i + 1}</text>
+      `).join("")}
+      <text x="3" y="24" fill="#b9cad8" font-size="10">100</text>
+      <text x="12" y="121" fill="#b9cad8" font-size="10">0</text>
+    </svg>
+  `;
+}
+
+function profileName() {
+  if (state.records.some(r => r.action === "strike")) {
+    return "The High Risk Strategist";
+  }
+  if (state.readiness >= 75 && state.cost >= 65) {
+    return "The Maximum Alert Commander";
+  }
+  if (state.readiness >= 65) {
+    return "The Early Mobiliser";
+  }
+  if (state.readiness < 40) {
+    return "The Cautious Analyst";
+  }
+  return "The Measured Decision Maker";
+}
+
+function picture(file, caption) {
+  return `
+    <figure>
+      <img src="${encodeURI(file)}" alt="${caption}"
+           loading="lazy" onerror="this.style.display='none'">
+      <figcaption>${caption}</figcaption>
+    </figure>
+  `;
+}
+
+function showEnding() {
+  document.getElementById("play").hidden = true;
+  document.getElementById("ending").hidden = false;
+
+  const history = state.records.map((r, i) => `
+    <div class="timelineitem">
+      <div class="kicker">Briefing ${i + 1} | ${r.date}</div>
+      <strong>${actions[r.action].name}</strong>
+      <div class="small">
+        Your war assessment: ${r.probability}%
+        ${r.challenged ? " | You challenged the prevailing assessment." : ""}
+      </div>
+    </div>
+  `).join("");
+
+  const challenged = state.records.filter(r => r.challenged).length;
+
+  const historicalText = `
+    <p>
+      On 6 October 1973, at approximately 14:00, Egyptian
+      and Syrian forces attacked Israeli positions on the
+      Sinai and Golan fronts. Israeli leaders had received
+      important warning information, but the attack still
+      exposed serious failures in assessment and preparedness.
+    </p>
+    <p>
+      Israeli leaders received a highly credible warning
+      on the morning of 6 October. Some reserves were mobilised,
+      and Israel did not launch a preemptive strike.
+      The question was not whether there were warning signs,
+      but how to interpret them and act in time.
+    </p>
+    <p>
+      After the war, the Agranat Commission investigated
+      the intelligence available, how it had been analysed,
+      and the armed forces' readiness.
+    </p>
+  `;
+
+  document.getElementById("results").innerHTML = `
+    <div class="kicker">Your after action report</div>
+    <h2>${profileName()}</h2>
+    <p class="lede">
+      Your decisions shaped a simulated readiness profile.
+      They did not change the historical outbreak of war.
+    </p>
+
+    <div class="metricgrid">
+      <div class="resultmetric">
+        <div class="kicker">Military readiness</div>
+        <div class="value">${state.readiness}/100</div>
+        <p class="small">Higher preparation, but not a prediction of victory.</p>
+      </div>
+      <div class="resultmetric">
+        <div class="kicker">Economic cost</div>
+        <div class="value">${state.cost}/100</div>
+        <p class="small">The disruption associated with your chosen precautions.</p>
+      </div>
+      <div class="resultmetric">
+        <div class="kicker">Escalation risk</div>
+        <div class="value">${state.escalation}/100</div>
+        <p class="small">The diplomatic and political risks of your actions.</p>
+      </div>
+      <div class="resultmetric">
+        <div class="kicker">Independent analysis</div>
+        <div class="value">${challenged} times</div>
+        <p class="small">
+          How often you challenged the prevailing assumptions when offered the choice.
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="kicker">How your judgement changed</div>
+      <h3>Estimated likelihood of war</h3>
+      ${riskGraph()}
+      <p class="small">
+        This chart records your subjective estimates, not officially measured probabilities.
+      </p>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="kicker">Decision history</div>
+      <h3>Your six decisions</h3>
+      <div class="timeline">${history}</div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="kicker">What actually happened</div>
+      <h2>The historical record</h2>
+      ${historicalText}
+      <div class="reportgrid">
+        ${picture("image(20261103-162558).png", "Prime Minister Golda Meir")}
+        ${picture("image(20261103-162612).png", "Defence Minister Moshe Dayan")}
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="kicker">War and aftermath</div>
+      <h2>From intelligence to reality</h2>
+      <div class="gallery">
+        ${picture("image(20261103-162709).png", "Historical image of military vehicles crossing a waterway")}
+        ${picture("image(20261103-162704).png", "Historical image of a military crossing")}
+        ${picture("image(20261103-162745).png", "Israeli soldiers pictured during the period")}
+        ${picture("image(20261103-162627).png", "Golda Meir meeting soldiers")}
+      </div>
+      <h3>Map of the conflict</h3>
+      <img class="mapimg" src="image(20261103-162538).png"
+           alt="Map of Israel and surrounding territory showing different positions associated with the 1967 and 1973 wars"
+           onerror="this.style.display='none'">
+      <p class="small">
+        This supplied map combines territorial positions from different
+        stages before and after the war. It is not a map of troop
+        locations on the morning of 6 October.
+      </p>
+    </div>
+
+    <div class="notice">
+      <h3>The question that matters</h3>
+      <p>
+        You knew this was a game about the Yom Kippur War.
+        The people making decisions in 1973 did not know
+        exactly what was about to happen.
+      </p>
+      <p><strong>How much did hindsight affect your decisions?</strong></p>
+      <p>
+        What is more dangerous: acting too early on uncertain evidence,
+        or acting too late when the evidence becomes convincing?
+      </p>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>Historical sources</h3>
+      <p>
+        <a href="https://archives.mod.gov.il/sites/English/docs/agranat/Pages/default.aspx"
+           target="_blank" rel="noopener">
+          Israeli Ministry of Defence: Agranat Commission
+        </a>
+      </p>
+      <p>
+        <a href="https://history.state.gov/historicaldocuments/frus1969-76v25/d97"
+           target="_blank" rel="noopener">
+          US State Department: Intelligence report, October 1973
+        </a>
+      </p>
+      <p>
+        <a href="https://history.state.gov/historicaldocuments/frus1969-76v25/d99"
+           target="_blank" rel="noopener">
+          US State Department: Memorandum of 6 October 1973
+        </a>
+      </p>
+      <p class="small">
+        The intelligence briefings and numerical indicators in this game
+        are educational reconstructions. They should not be treated
+        as original documents or historical measurements.
+      </p>
+      <p class="small">
+        Historical photographs and logos were supplied for this project.
+        Confirm image permissions before public distribution.
+      </p>
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="button" onclick="window.print()">
+        Print Assessment
+      </button>
+      <button class="secondary" type="button" id="again">
+        Start Again
+      </button>
+    </div>
+  `;
+
+  document.getElementById("again").addEventListener("click", restart);
+  window.scrollTo(0, 0);
+}
+
+function restart() {
+  state = null;
+  document.getElementById("play").hidden = true;
+  document.getElementById("ending").hidden = true;
+  document.getElementById("welcome").hidden = false;
+  window.scrollTo(0, 0);
+}
+
+document.querySelectorAll("[data-start]").forEach(button => {
+  button.addEventListener("click", () => begin(button.dataset.start));
+});
+
+document.getElementById("restartPlay").addEventListener("click", restart);
+document.getElementById("restartEnd").addEventListener("click", restart);
+</script>
+
+</body>
+</html>
